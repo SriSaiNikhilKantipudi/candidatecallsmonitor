@@ -20,6 +20,6 @@ public interface CanService {
 
 	public int saveCcal(Candidatecalls ccal);
 	
-
+	public int authenticateUser(String userId, String password);
 
 }

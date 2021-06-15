@@ -41,6 +41,13 @@ public class CanServiceImpl implements CanService {
 	public int saveCcal(Candidatecalls ccal) {
 		return dao.saveCcal(ccal);
 	}
+
+	@Override
+	public int authenticateUser(String userId, String password) {
+		return dao.authenticateUser(userId,password);
+	}
+	
+	
 	
 
 

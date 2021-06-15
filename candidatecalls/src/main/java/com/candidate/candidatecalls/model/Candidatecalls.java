@@ -16,6 +16,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -34,7 +35,7 @@ public class Candidatecalls {
     @CreatedDate
     private Date dateofcall;
 	
-	@JsonManagedReference
+	@JsonBackReference
 	@ManyToOne
 	private Candidate candidate;
 

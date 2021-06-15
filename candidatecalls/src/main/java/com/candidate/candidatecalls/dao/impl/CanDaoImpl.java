@@ -58,13 +58,23 @@ public class CanDaoImpl implements CanDAO{
 		return 1;
 	}
 
-
-
-
-	
+	@Override public int authenticateUser(String userId, String password) {
 		
-	}
+	  String admin="admin"; 
+	  if(userId.equals(admin)&& password.equals(admin))
+		  return 2; 
+	  
+	  String hql = "FROM Candidate c WHERE c.userid=\'"+userId+"\'"; 
+	  Session session = this.sessionFactory.getCurrentSession();
+	  Query q = session.createQuery(hql); 
+	  String actualPassword = (((Candidate)(q.uniqueResult())).getPassword()).toString();
+	  if(actualPassword.equals(password)) 
+		  return 1; 
+	  else 
+		  return 0; 
+	  }
 
+}
 	
 
 

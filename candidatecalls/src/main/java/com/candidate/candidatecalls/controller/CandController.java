@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.candidate.candidatecalls.model.Authentication;
 //import com.candidate.candidatecalls.model.Authentication;
 import com.candidate.candidatecalls.model.Candidate;
 import com.candidate.candidatecalls.model.Candidatecalls;
@@ -68,6 +69,14 @@ public class CandController {
 	}
 	
 	
+	// Authentication API
+	@PostMapping(value= "/can/auth")
+	public ResponseEntity<Integer> auth(@RequestBody Authentication authentication, Candidate can)
+	{
+		List<Candidate> can1 = canservice.getAllCan();
+		authentication.setCandidate(can1);
+		return new ResponseEntity<>(canservice.authenticateUser(authentication.getUserId(),authentication.getPassword()),HttpStatus.OK);
+	}
 
  
 }

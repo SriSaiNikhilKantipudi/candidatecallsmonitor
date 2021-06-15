@@ -21,6 +21,8 @@ public Candidate getCand(Candidate can, Integer id);
 
 public int saveCcal(Candidatecalls ccal);
 
+public int authenticateUser(String userId, String password);
+
 
 
 
