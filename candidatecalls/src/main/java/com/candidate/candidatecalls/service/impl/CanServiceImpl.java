@@ -17,8 +17,7 @@ import com.candidate.candidatecalls.service.CanService;
 @Service
 public class CanServiceImpl implements CanService {
 	
-	@Autowired
-	private RestTemplate template;
+
 	
 	@Autowired
 	private CanDAO dao;
@@ -43,11 +42,6 @@ public class CanServiceImpl implements CanService {
 		return dao.saveCcal(ccal);
 	}
 	
-	@Override
-	public int authenticateUser( String userId, String password)
-	{
-		return dao.authenticateUser(userId,password);
-	}
-	
+
 
 }

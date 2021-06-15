@@ -22,9 +22,7 @@ public class CanDaoImpl implements CanDAO{
 	@Autowired
     private SessionFactory sessionFactory;
  
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
-    }
+
 
 
 	@Override
@@ -46,8 +44,7 @@ public class CanDaoImpl implements CanDAO{
 	@Override
 	public Candidate getCand(Candidate can, Integer id) {
 		Session session = this.sessionFactory.getCurrentSession();
-        /*List<Candidate>  canList = session.createQuery("from Candidate where id=:id").list();
-*/      Candidate canList = (Candidate) session.get(Candidate.class,id);
+		Candidate canList = (Candidate) session.get(Candidate.class,id);
         return canList;
 	}
 
@@ -62,28 +59,6 @@ public class CanDaoImpl implements CanDAO{
 	}
 
 
-	@Override
-	public int authenticateUser(String userId, String password) {
-		Session session = this.sessionFactory.getCurrentSession();
-		List<Candidate>  canList = session.createQuery("from Candidate").list();
-		System.out.println(canList.size());
-		String hql = "FROM Candidate c WHERE c.userid=\'"+userId+"\'";
-//		Query q = session.createQuery("select password from Candidate where userid=:i").setParameter("i", userId);
-		Candidate q = (Candidate)session.createQuery(hql);
-//		List results = q.list();
-//		System.out.println(results);
-//		System.out.println( q.);
-		System.out.println(userId + "  "+ password);
-		System.out.println(q);
-		System.out.println(q.getPassword());
-				
-//		StrictualPassword = (String)q;
-//		System.out.println(actualPassword+" "+ password);
-//		if(actualPassword.equals(password))
-//			return 1;
-//		else 
-			return 0;
-	}
 
 
 	

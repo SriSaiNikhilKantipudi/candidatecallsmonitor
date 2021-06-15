@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "candidatecalls")
 public class Candidatecalls {
@@ -32,25 +34,12 @@ public class Candidatecalls {
     @CreatedDate
     private Date dateofcall;
 	
+	@JsonManagedReference
 	@ManyToOne
 	private Candidate candidate;
 
 	
-	/*
-	 * @Column(name="cid") private Integer cid;
-	 */
-	 
-	
-	/*
-	 * @ManyToOne private Candidate candidate;
-	 */
 
-	
-	/*
-	 * public Integer getCid() { return cid; }
-	 * 
-	 * public void setCid(Integer cid) { this.cid = cid; }
-	 */
 
 	public Integer getId() {
 		return id;
