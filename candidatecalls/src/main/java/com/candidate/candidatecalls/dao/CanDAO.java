@@ -23,6 +23,12 @@ public int saveCcal(Candidatecalls ccal);
 
 public int authenticateUser(String userId, String password);
 
+public List<Candidatecalls> getCandidateCallList(Candidate can, Integer id);
+
+
+
+//public List<Candidatecalls> getCandidateCalls(List<Candidatecalls> can1);
+
 
 
 

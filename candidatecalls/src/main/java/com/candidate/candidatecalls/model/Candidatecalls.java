@@ -35,6 +35,16 @@ public class Candidatecalls {
     @CreatedDate
     private Date dateofcall;
 	
+	
+	/*
+	 * @Column(name = "candidate_id") private Integer candidate_id;
+	 * 
+	 * public Integer getCandidate_id() { return candidate_id; }
+	 * 
+	 * public void setCandidate_id(Integer candidate_id) { this.candidate_id =
+	 * candidate_id; }
+	 */
+	 
 	@JsonBackReference
 	@ManyToOne
 	private Candidate candidate;

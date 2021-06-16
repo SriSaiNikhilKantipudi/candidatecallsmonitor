@@ -1,6 +1,7 @@
 package com.candidate.candidatecalls.dao.impl;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import com.candidate.candidatecalls.dao.CanDAO;
 import com.candidate.candidatecalls.model.Candidate;
 import com.candidate.candidatecalls.model.Candidatecalls;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import javafx.util.Pair;
 
 
 @Service
@@ -45,6 +48,7 @@ public class CanDaoImpl implements CanDAO{
 	public Candidate getCand(Candidate can, Integer id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Candidate canList = (Candidate) session.get(Candidate.class,id);
+	
         return canList;
 	}
 
@@ -58,7 +62,8 @@ public class CanDaoImpl implements CanDAO{
 		return 1;
 	}
 
-	@Override public int authenticateUser(String userId, String password) {
+	@Override 
+	public int authenticateUser(String userId, String password) {
 		
 	  String admin="admin"; 
 	  if(userId.equals(admin)&& password.equals(admin))
@@ -73,6 +78,25 @@ public class CanDaoImpl implements CanDAO{
 	  else 
 		  return 0; 
 	  }
+
+
+	@Override
+	public List<Candidatecalls> getCandidateCallList(Candidate can, Integer id) {
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		Candidate canList = (Candidate) session.get(Candidate.class,id);
+		List<Candidatecalls> sao =canList.getCcalls();
+		List<String> candidateCallList = new ArrayList<>();
+
+				
+        return sao;
+	}
+
+
+	
+	
+	
+
 
 }
 	

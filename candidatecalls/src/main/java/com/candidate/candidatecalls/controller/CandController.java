@@ -76,7 +76,17 @@ public class CandController {
 		List<Candidate> can1 = canservice.getAllCan();
 		authentication.setCandidate(can1);
 		return new ResponseEntity<>(canservice.authenticateUser(authentication.getUserId(),authentication.getPassword()),HttpStatus.OK);
+	}													
+
+	
+	// Get Individual Candidate Call list
+	@GetMapping(value = "/candidateCallList/{id}")
+	public ResponseEntity<List<Candidatecalls>> callList(@PathVariable("id") Integer id, Candidate can)
+	{
+		return new ResponseEntity <List<Candidatecalls>>(canservice.getCandidateCallList(can,id),HttpStatus.OK);
 	}
 
+	
+	
  
 }

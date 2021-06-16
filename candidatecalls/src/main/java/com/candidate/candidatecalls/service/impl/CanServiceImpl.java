@@ -46,7 +46,18 @@ public class CanServiceImpl implements CanService {
 	public int authenticateUser(String userId, String password) {
 		return dao.authenticateUser(userId,password);
 	}
+
+	@Override
+	public List<Candidatecalls> getCandidateCallList(Candidate can, Integer id) {
+		return dao.getCandidateCallList( can,id);
+	}
+
 	
+
+	/*
+	 * @Override public List<Candidatecalls> getCandidateCalls(List<Candidatecalls>
+	 * can1) { return dao.getCandidateCalls(can1); }
+	 */
 	
 	
 
