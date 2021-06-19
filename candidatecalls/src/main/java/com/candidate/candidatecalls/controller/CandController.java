@@ -38,19 +38,19 @@ public class CandController {
 	private static Map<Integer,Candidate> candidates = new HashMap<>();
 	
 	
-	@GetMapping("/can/{id}")
+	@GetMapping("/candidate/{id}")
 	public ResponseEntity <Candidate>getCandidate(@PathVariable("id")Integer id,Candidate can) {
 		/* can.setId(id); */  
 		return new ResponseEntity <Candidate>(canservice.getCand(can,id),HttpStatus.OK);
 	}
 	
-	@GetMapping("/can") 
+	@GetMapping("/candidate") 
 	  public ResponseEntity<List<Candidate>>getCandidateAll() {
 		  return new ResponseEntity<List<Candidate>>(canservice.getAllCan(),HttpStatus.OK);
 		  }
 	 
 	
-	@PostMapping(value="/can")
+	@PostMapping(value="/candidate")
 	public ResponseEntity<Integer> saveCan(@RequestBody Candidate can) {
 		
 				return new ResponseEntity<>(canservice.saveCan(can),HttpStatus.OK);
@@ -59,7 +59,7 @@ public class CandController {
 	
 	//Candidate call post api
 	
-	@PostMapping(value="/can/{candidateid}/candidateCall")
+	@PostMapping(value="/candidate/{candidateid}/candidateCall")
 	public ResponseEntity<Integer> saveCan(@PathVariable("candidateid")Integer candidateid,@RequestBody Candidatecalls ccal,Candidate can) {
 		can = canservice.getCand(can, candidateid);
 		ccal.setCandidate(can);
@@ -70,7 +70,7 @@ public class CandController {
 	
 	
 	// Authentication API
-	@PostMapping(value= "/can/auth")
+	@PostMapping(value= "/candidate/auth")
 	public ResponseEntity<Integer> auth(@RequestBody Authentication authentication, Candidate can)
 	{
 		List<Candidate> can1 = canservice.getAllCan();

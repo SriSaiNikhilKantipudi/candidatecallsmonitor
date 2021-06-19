@@ -39,7 +39,7 @@ public class Candidate {
 	@JoinColumn(name="candidate_id")
 	private List<Candidatecalls> ccalls;
 	
-
+            
 
 	public Candidate() {
 	}

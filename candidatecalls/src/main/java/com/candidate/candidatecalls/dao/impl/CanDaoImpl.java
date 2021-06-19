@@ -1,7 +1,6 @@
 package com.candidate.candidatecalls.dao.impl;
 
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,14 +8,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.candidate.candidatecalls.dao.CanDAO;
 import com.candidate.candidatecalls.model.Candidate;
 import com.candidate.candidatecalls.model.Candidatecalls;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import javafx.util.Pair;
 
 
 @Service
@@ -24,22 +20,21 @@ public class CanDaoImpl implements CanDAO{
 	
 	@Autowired
     private SessionFactory sessionFactory;
+	
+	private static final String ADMIN="admin";
  
-
-
-
 	@Override
 	public List<Candidate> getCan() {
 		Session session = this.sessionFactory.getCurrentSession();
-        List<Candidate>  canList = session.createQuery("from Candidate").list();
+        List<Candidate>   canList    = session.createQuery("from Candidate").list();
         return canList;
 	}
 
 
 	@Override
-	public int saveCan(Candidate can) {
+	public int saveCan(Candidate candidate) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.save(can);
+		session.save(candidate);
 		return 1;
 	}
 
@@ -48,7 +43,6 @@ public class CanDaoImpl implements CanDAO{
 	public Candidate getCand(Candidate can, Integer id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Candidate canList = (Candidate) session.get(Candidate.class,id);
-	
         return canList;
 	}
 
@@ -65,8 +59,7 @@ public class CanDaoImpl implements CanDAO{
 	@Override 
 	public int authenticateUser(String userId, String password) {
 		
-	  String admin="admin"; 
-	  if(userId.equals(admin)&& password.equals(admin))
+	  if(userId.equals(ADMIN)&& password.equals(ADMIN))
 		  return 2; 
 	  
 	  String hql = "FROM Candidate c WHERE c.userid=\'"+userId+"\'"; 
@@ -82,12 +75,12 @@ public class CanDaoImpl implements CanDAO{
 
 	@Override
 	public List<Candidatecalls> getCandidateCallList(Candidate can, Integer id) {
-		
+		List<Candidatecalls> sao = null;
 		Session session = this.sessionFactory.getCurrentSession();
 		Candidate canList = (Candidate) session.get(Candidate.class,id);
-		List<Candidatecalls> sao =canList.getCcalls();
-		List<String> candidateCallList = new ArrayList<>();
-
+		if(canList != null) {
+			sao =canList.getCcalls();
+		}
 				
         return sao;
 	}
