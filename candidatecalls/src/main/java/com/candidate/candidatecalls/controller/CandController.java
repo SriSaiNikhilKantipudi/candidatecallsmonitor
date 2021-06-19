@@ -25,7 +25,7 @@ import com.candidate.candidatecalls.model.Candidatecalls;
 import com.candidate.candidatecalls.service.CanService;
 
 
-
+///cors issue
 @Component
 @RestController
 @RequestMapping("/api/v1")
