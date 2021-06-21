@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.ILoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -17,23 +18,35 @@ import com.candidate.candidatecalls.model.Candidate;
 import com.candidate.candidatecalls.model.Candidatecalls;
 import com.candidate.candidatecalls.service.CanService;
 
-
+public class MITApplication{
+public static String GlobalApplicationNAme= "this si for MIT";
+}
 
 @Component
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1")
 public class CandController {
-	
+/*
+	// get data from postbody and load it into specific type typeof Candidate
+	//Candidate candidate = new Candidate();
+	candidate.id = datafrom Post body.ID;
+
+	new CardController().savecan(candidate); //CardController  -> SaveCan
+	// CandidateCalls --> global memory -> static members
+	*/
 	@Autowired
 	private CanService canservice;
+	@Autowired
+	private ILoggerFactory _logger;
 
-	private static Map<Integer,Candidate> candidates = new HashMap<>();
+	public static Map<Integer,Candidate> candidates = new HashMap<>();
 	
-	
+
 	@GetMapping("/candidate/{id}")
 	public ResponseEntity <Candidate>getCandidate(@PathVariable("id")Integer id,Candidate can) {
-		/* can.setId(id); */  
+		/* can.setId(id); */
+		MITApplication.GlobalApplicationNAme = "Uopdated one";
 		return new ResponseEntity <Candidate>(canservice.getCand(can,id),HttpStatus.OK);
 	}
 	
@@ -45,12 +58,18 @@ public class CandController {
 	
 	@PostMapping(value="/candidate")
 	public ResponseEntity<Integer> saveCan(@RequestBody Candidate can) {
-		
+		try{
+
+		}catch(Exception ex){
+			_logger.getLogger('test').error(ex.ToString(), can.ToJson());
+		}
 				return new ResponseEntity<>(canservice.saveCan(can),HttpStatus.OK);
 	}
 	
 	
 	//Candidate call post api
+	// SaveCandidate_ShouldTake_CandiddateID_and_Body_REturns_Success
+	// SaveCandidate_ShouldTake_CandiddateID_and_Body_REturns_Exception
 	
 	@PostMapping(value="/candidate/{candidateid}/candidateCall")
 	public ResponseEntity<Integer> saveCan(@PathVariable("candidateid")Integer candidateid,@RequestBody Candidatecalls ccal,Candidate can) {
