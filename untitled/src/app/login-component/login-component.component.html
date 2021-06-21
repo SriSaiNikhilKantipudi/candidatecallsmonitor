@@ -1,0 +1,23 @@
+<p>login-component works!</p>
+<!--
+<a routerLink="/adminPage"> Admin </a>
+<a routerLink="/candidatePage"> Candidate </a>
+-->
+<div class="LoginForm">
+  <form>
+  <div class="UserName">
+  <input type="text"  name="userName" [(ngModel)]="userName" >
+  </div>
+    <div class="Password">
+  <input type="password"  name="password" [(ngModel)]="password"  >
+    </div>
+  <div class="LoginButton">
+  </div>
+  <input type="button" (click)="validateUser()">
+
+    <input type="button" (click)="registerUser()">
+  </form>
+</div>
+<div class="ResponseField">
+{{response}}
+</div>
