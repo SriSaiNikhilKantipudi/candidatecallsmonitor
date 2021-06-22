@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+
 @Entity
 @Table(name="candidatedetails")
 public class Candidate {

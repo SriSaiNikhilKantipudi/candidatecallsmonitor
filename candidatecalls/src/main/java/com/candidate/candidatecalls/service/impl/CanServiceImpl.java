@@ -52,12 +52,35 @@ public class CanServiceImpl implements CanService {
 		return dao.getCandidateCallList( can,id);
 	}
 
+	@Override
+	public int deleteCandidateById(int id, Candidate can) {
+		
+	
+		return dao.deleteCandidateById(id,can);
+	}
+
+	
+	@Override
+	public int updateCandidate(int id, Candidate can) {
+	
+		
+		return dao.updateCandidate(id,can);
+	}
+	
+	
+	@Override
+	public int updateCandidateCall(int id,Candidatecalls can) {
+	
+		
+		return dao.updateCandidateCall(id,can);
+	}
 	
 
 	/*
 	 * @Override public List<Candidatecalls> getCandidateCalls(List<Candidatecalls>
 	 * can1) { return dao.getCandidateCalls(can1); }
 	 */
+	
 	
 	
 

@@ -4,8 +4,12 @@ package com.candidate.candidatecalls.dao.impl;
 import java.util.Date;
 import java.util.List;
 
+
+
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,7 +89,58 @@ public class CanDaoImpl implements CanDAO{
         return sao;
 	}
 
+	@Override 
+	public int deleteCandidateById(int id, Candidate can) { 
+	  
+	  
+	  return 1; }
 
+	//update candidate details
+	@Override
+	public int updateCandidate(int id, Candidate can) {
+	Session session = this.sessionFactory.getCurrentSession();
+		Transaction tx= session.beginTransaction();
+		if(can.getName()!=null&& can.getPassword()!=null&&can.getUserid()!=null)
+		{
+		Candidate v = (Candidate)session.load(Candidate.class, id);
+		
+		v.setName(can.getName());
+	
+		v.setPassword(can.getPassword());
+		
+		v.setUserid(can.getUserid());
+		session.update(v);
+
+		tx.commit();
+		}
+		else
+		{
+			return 0;
+		}
+		return 1;
+		
+	}
+
+	//update candidate calls
+	@Override
+	public int updateCandidateCall(int id, Candidatecalls can) {
+
+		Session session = this.sessionFactory.getCurrentSession(); //
+		// Hibernate.initialize(can); // session.update(can); Candidatecalls v1=
+		Transaction tx = session.beginTransaction();
+		if(can.getCompanyname()!=null)
+		{
+		Candidatecalls v1 = (Candidatecalls) session.load(Candidatecalls.class, id);
+		v1.setCompanyname(can.getCompanyname());
+		session.update(v1);
+		tx.commit();
+		}
+		else
+		{
+			return 0;
+		}
+		return 1;
+	} 
 	
 	
 	
