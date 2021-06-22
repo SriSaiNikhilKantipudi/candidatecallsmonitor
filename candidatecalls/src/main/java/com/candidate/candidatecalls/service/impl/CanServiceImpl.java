@@ -17,8 +17,7 @@ import com.candidate.candidatecalls.service.CanService;
 @Service
 public class CanServiceImpl implements CanService {
 	
-	@Autowired
-	private RestTemplate template;
+
 	
 	@Autowired
 	private CanDAO dao;
@@ -42,12 +41,48 @@ public class CanServiceImpl implements CanService {
 	public int saveCcal(Candidatecalls ccal) {
 		return dao.saveCcal(ccal);
 	}
-	
+
 	@Override
-	public int authenticateUser( String userId, String password)
-	{
+	public int authenticateUser(String userId, String password) {
 		return dao.authenticateUser(userId,password);
 	}
+
+	@Override
+	public List<Candidatecalls> getCandidateCallList(Candidate can, Integer id) {
+		return dao.getCandidateCallList( can,id);
+	}
+
+	@Override
+	public int deleteCandidateById(int id, Candidate can) {
+		
 	
+		return dao.deleteCandidateById(id,can);
+	}
+
+	
+	@Override
+	public int updateCandidate(int id, Candidate can) {
+	
+		
+		return dao.updateCandidate(id,can);
+	}
+	
+	
+	@Override
+	public int updateCandidateCalls(Candidatecalls can) {
+	
+		
+		return dao.updateCandidateCall(can);
+	}
+	
+
+	/*
+	 * @Override public List<Candidatecalls> getCandidateCalls(List<Candidatecalls>
+	 * can1) { return dao.getCandidateCalls(can1); }
+	 */
+	
+	
+	
+
 
 }

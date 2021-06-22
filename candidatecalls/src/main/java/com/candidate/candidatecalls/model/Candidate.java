@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="candidatedetails")
 public class Candidate {
@@ -32,11 +34,13 @@ public class Candidate {
 	@Column(name = "password")
 	private String password;
 	
-	
+	@JsonBackReference
 	@OneToMany
 	@JoinColumn(name="candidate_id")
-	private List<Candidatecalls> ccalls=new ArrayList<>();
+	private List<Candidatecalls> ccalls;
 	
+            
+
 	public Candidate() {
 	}
 	
@@ -98,6 +102,9 @@ public class Candidate {
 	public void setCcalls(List<Candidatecalls> ccalls) {
 		this.ccalls = ccalls;
 	}
+
+
+
 	
 	
 	
