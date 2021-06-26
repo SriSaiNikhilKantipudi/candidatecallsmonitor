@@ -17,8 +17,7 @@ import com.candidate.candidatecalls.service.CandidateService;
 @Service
 public class CandidateServiceImpl implements CandidateService {
 	
-	@Autowired
-	private RestTemplate template;
+
 	
 	@Autowired
 	private CandidateDAO dao;
@@ -42,12 +41,48 @@ public class CandidateServiceImpl implements CandidateService {
 	public int saveCandidatecalls(Candidatecalls ccal) {
 		return dao.saveCandidatecalls(ccal);
 	}
-	
+
 	@Override
-	public int authenticateUser( String userId, String password)
-	{
+	public int authenticateUser(String userId, String password) {
 		return dao.authenticateUser(userId,password);
 	}
+
+	@Override
+	public List<Candidatecalls> getCandidateCallList(Candidate can, Integer id) {
+		return dao.getCandidateCallList( can,id);
+	}
+
+	@Override
+	public int deleteCandidateById(int id, Candidate can) {
+		
 	
+		return dao.deleteCandidateById(id,can);
+	}
+
+	
+	@Override
+	public int updateCandidate(int id, Candidate can) {
+	
+		
+		return dao.updateCandidate(id,can);
+	}
+	
+	
+	@Override
+	public int updateCandidateCall(int id,Candidatecalls can) {
+	
+		
+		return dao.updateCandidateCall(id,can);
+	}
+	
+
+	/*
+	 * @Override public List<Candidatecalls> getCandidateCalls(List<Candidatecalls>
+	 * can1) { return dao.getCandidateCalls(can1); }
+	 */
+	
+	
+	
+
 
 }

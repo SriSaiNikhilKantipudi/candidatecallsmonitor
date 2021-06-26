@@ -14,13 +14,21 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import com.candidate.candidatecalls.dao.CandidateDAO;
+=======
+import com.candidate.candidatecalls.dao.CanDAO;
+>>>>>>> main
 import com.candidate.candidatecalls.model.Candidate;
 import com.candidate.candidatecalls.model.Candidatecalls;
 
 
 @Service
+<<<<<<< HEAD
 public class CandidateDaoImpl implements CandidateDAO{
+=======
+public class CanDaoImpl implements CanDAO{
+>>>>>>> main
 	
 	@Autowired
     private SessionFactory sessionFactory;
@@ -28,16 +36,24 @@ public class CandidateDaoImpl implements CandidateDAO{
 	private static final String ADMIN="admin";
  
 	@Override
+<<<<<<< HEAD
 	public List<Candidate> getCandidate() {
 		Session session = this.sessionFactory.getCurrentSession();
         List<Candidate>   canList    = session.createQuery("from Candidate").list();
        
         return canList;
        
+=======
+	public List<Candidate> getCan() {
+		Session session = this.sessionFactory.getCurrentSession();
+        List<Candidate>   canList    = session.createQuery("from Candidate").list();
+        return canList;
+>>>>>>> main
 	}
 
 
 	@Override
+<<<<<<< HEAD
 	public int saveCandidate(Candidate candidate) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if(candidate.getName()!=null&& candidate.getPassword()!=null&&candidate.getUserid()!=null)
@@ -48,12 +64,21 @@ public class CandidateDaoImpl implements CandidateDAO{
 		{
 			return 0;
 		}
+=======
+	public int saveCan(Candidate candidate) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(candidate);
+>>>>>>> main
 		return 1;
 	}
 
 
 	@Override
+<<<<<<< HEAD
 	public Candidate getCandidate(Candidate can, Integer id) {
+=======
+	public Candidate getCand(Candidate can, Integer id) {
+>>>>>>> main
 		Session session = this.sessionFactory.getCurrentSession();
 		Candidate canList = (Candidate) session.get(Candidate.class,id);
         return canList;
@@ -61,6 +86,7 @@ public class CandidateDaoImpl implements CandidateDAO{
 
 
 	@Override
+<<<<<<< HEAD
 	public int saveCandidatecalls(Candidatecalls candidatecalls) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if(candidatecalls.getCompanyname()!=null)
@@ -73,6 +99,13 @@ public class CandidateDaoImpl implements CandidateDAO{
 		{
 			return 0;
 		}
+=======
+	public int saveCcal(Candidatecalls ccal) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Date date = new Date();
+		ccal.setDateofcall(date);
+		session.save(ccal);
+>>>>>>> main
 		return 1;
 	}
 
@@ -86,7 +119,10 @@ public class CandidateDaoImpl implements CandidateDAO{
 	  Session session = this.sessionFactory.getCurrentSession();
 	  Query q = session.createQuery(hql); 
 	  String actualPassword = (((Candidate)(q.uniqueResult())).getPassword()).toString();
+<<<<<<< HEAD
 	  
+=======
+>>>>>>> main
 	  if(actualPassword.equals(password)) 
 		  return 1; 
 	  else 
@@ -110,8 +146,12 @@ public class CandidateDaoImpl implements CandidateDAO{
 	public int deleteCandidateById(int id, Candidate can) { 
 	  
 	  
+<<<<<<< HEAD
 	  return 1;
 	  }
+=======
+	  return 1; }
+>>>>>>> main
 
 	//update candidate details
 	@Override

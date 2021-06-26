@@ -10,6 +10,7 @@ import com.candidate.candidatecalls.model.Candidatecalls;
 
 
 @Service
+<<<<<<< HEAD
 public interface CandidateService
 {
 	
@@ -20,6 +21,18 @@ public interface CandidateService
 	public Candidate getCandidate(Candidate can, Integer id);
 
 	public int saveCandidatecalls(Candidatecalls ccal);
+=======
+public interface CanService
+{
+	
+	public List<Candidate> getAllCan();
+
+	public int saveCan(Candidate can);
+	
+	public Candidate getCand(Candidate can, Integer id);
+
+	public int saveCcal(Candidatecalls ccal);
+>>>>>>> main
 	
 	public int authenticateUser(String userId, String password);
 

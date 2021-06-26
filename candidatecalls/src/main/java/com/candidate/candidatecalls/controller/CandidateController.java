@@ -9,17 +9,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.candidate.candidatecalls.model.Authentication;
+//import com.candidate.candidatecalls.model.Authentication;
 import com.candidate.candidatecalls.model.Candidate;
 import com.candidate.candidatecalls.model.Candidatecalls;
 import com.candidate.candidatecalls.service.CandidateService;
@@ -28,6 +21,7 @@ import com.candidate.candidatecalls.service.CandidateService;
 
 @Component
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1")
 public class CandidateController {
 	
@@ -38,18 +32,19 @@ public class CandidateController {
 	
 <<<<<<< Updated upstream:candidatecalls/src/main/java/com/candidate/candidatecalls/controller/CandController.java
 	
-	@GetMapping("/can/{id}")
+	@GetMapping("/candidate/{id}")
 	public ResponseEntity <Candidate>getCandidate(@PathVariable("id")Integer id,Candidate can) {
 		/* can.setId(id); */  
 		return new ResponseEntity <Candidate>(canservice.getCand(can,id),HttpStatus.OK);
 	}
 	
-	@GetMapping("/can") 
+	@GetMapping("/candidate") 
 	  public ResponseEntity<List<Candidate>>getCandidateAll() {
 		  return new ResponseEntity<List<Candidate>>(canservice.getAllCan(),HttpStatus.OK);
 		  }
 	 
 	
+<<<<<<< HEAD:candidatecalls/src/main/java/com/candidate/candidatecalls/controller/CandController.java
 	@PostMapping(value="/can")
 =======
 	// get candidate details by id
@@ -67,6 +62,9 @@ public class CandidateController {
 	// post candidate details
 	@PostMapping(value = "/candidate")
 >>>>>>> Stashed changes:candidatecalls/src/main/java/com/candidate/candidatecalls/controller/CandidateController.java
+=======
+	@PostMapping(value="/candidate")
+>>>>>>> main:candidatecalls/src/main/java/com/candidate/candidatecalls/controller/CandidateController.java
 	public ResponseEntity<Integer> saveCan(@RequestBody Candidate can) {
 		return new ResponseEntity<>(candidateservice.saveCandidate(can), HttpStatus.OK);
 	}
@@ -75,7 +73,7 @@ public class CandidateController {
 	
 	//Candidate call post api
 	
-	@PostMapping(value="/can/{candidateid}/candidateCall")
+	@PostMapping(value="/candidate/{candidateid}/candidateCall")
 	public ResponseEntity<Integer> saveCan(@PathVariable("candidateid")Integer candidateid,@RequestBody Candidatecalls ccal,Candidate can) {
 		can = canservice.getCand(can, candidateid);
 =======
@@ -94,6 +92,7 @@ public class CandidateController {
 <<<<<<< Updated upstream:candidatecalls/src/main/java/com/candidate/candidatecalls/controller/CandController.java
 	
 	
+<<<<<<< HEAD:candidatecalls/src/main/java/com/candidate/candidatecalls/controller/CandController.java
 	//Authentication API
 =======
 
@@ -131,13 +130,40 @@ public class CandidateController {
 	}
 	
 >>>>>>> Stashed changes:candidatecalls/src/main/java/com/candidate/candidatecalls/controller/CandidateController.java
+=======
+	// Authentication API
+	@PostMapping(value= "/candidate/auth")
+	public ResponseEntity<Integer> auth(@RequestBody Authentication authentication, Candidate can)
+	{
+		List<Candidate> can1 = canservice.getAllCan();
+		authentication.setCandidate(can1);
+		return new ResponseEntity<>(canservice.authenticateUser(authentication.getUserId(),authentication.getPassword()),HttpStatus.OK);
+	}													
+
 	
-		@PostMapping(value= "/can/auth")
-		public ResponseEntity<Integer> auth(@RequestBody Authentication authentication, Candidate can)
-		{
-			List<Candidate> can1 = canservice.getAllCan();
-			authentication.setCandidate(can1);
-			return new ResponseEntity<>(canservice.authenticateUser(authentication.getUserId(),authentication.getPassword()),HttpStatus.OK);
-		}
+	// Get Individual Candidate Call list
+	@GetMapping(value = "/candidateCallList/{id}")
+	public ResponseEntity<List<Candidatecalls>> callList(@PathVariable("id") Integer id, Candidate can)
+	{
+		return new ResponseEntity <List<Candidatecalls>>(canservice.getCandidateCallList(can,id),HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/deleteCandidateById/{id}")
+	public ResponseEntity<Integer> deleteCandidate(@PathVariable("id")Integer id,Candidate can){
+		return new ResponseEntity<Integer>(canservice.deleteCandidateById(id,can),HttpStatus.OK);
+	}
+	
+	@PutMapping(value = "/updateCandidateById/{id}")
+	public int updateCan(@RequestBody Candidate can, @PathVariable("id") int id) {
+		return canservice.updateCandidate(id,can);
+	}
+	
+	@PutMapping(value = "/updateCandidateCallsById/{id}")
+	public int updateCCalls(@RequestBody Candidatecalls can, @PathVariable("id") int id) {
+		return canservice.updateCandidateCall(id, can);
+	}
+	
+>>>>>>> main:candidatecalls/src/main/java/com/candidate/candidatecalls/controller/CandidateController.java
+	
  
 }
