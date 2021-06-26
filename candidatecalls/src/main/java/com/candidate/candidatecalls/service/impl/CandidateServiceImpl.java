@@ -8,38 +8,38 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.candidate.candidatecalls.dao.CanDAO;
+import com.candidate.candidatecalls.dao.CandidateDAO;
 import com.candidate.candidatecalls.model.Candidate;
 import com.candidate.candidatecalls.model.Candidatecalls;
-import com.candidate.candidatecalls.service.CanService;
+import com.candidate.candidatecalls.service.CandidateService;
 
 
 @Service
-public class CanServiceImpl implements CanService {
+public class CandidateServiceImpl implements CandidateService {
 	
 
 	
 	@Autowired
-	private CanDAO dao;
+	private CandidateDAO dao;
 
 	@Override
-	public List<Candidate> getAllCan() {
-		return dao.getCan();
+	public List<Candidate> getAllCandidates() {
+		return dao.getCandidate();
 	}
 
 	@Override
-	public int saveCan(Candidate can) {
-	return dao.saveCan(can);
+	public int saveCandidate(Candidate can) {
+	return dao.saveCandidate(can);
 	}
 
 	@Override
-	public Candidate getCand(Candidate can, Integer id) {
-		return dao.getCand(can,id);
+	public Candidate getCandidate(Candidate can, Integer id) {
+		return dao.getCandidate(can,id);
 	}
 
 	@Override
-	public int saveCcal(Candidatecalls ccal) {
-		return dao.saveCcal(ccal);
+	public int saveCandidatecalls(Candidatecalls ccal) {
+		return dao.saveCandidatecalls(ccal);
 	}
 
 	@Override

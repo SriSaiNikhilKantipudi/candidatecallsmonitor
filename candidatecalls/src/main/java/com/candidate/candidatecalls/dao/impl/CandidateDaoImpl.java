@@ -14,13 +14,13 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.candidate.candidatecalls.dao.CanDAO;
+import com.candidate.candidatecalls.dao.CandidateDAO;
 import com.candidate.candidatecalls.model.Candidate;
 import com.candidate.candidatecalls.model.Candidatecalls;
 
 
 @Service
-public class CanDaoImpl implements CanDAO{
+public class CandidateDaoImpl implements CandidateDAO{
 	
 	@Autowired
     private SessionFactory sessionFactory;
@@ -28,23 +28,32 @@ public class CanDaoImpl implements CanDAO{
 	private static final String ADMIN="admin";
  
 	@Override
-	public List<Candidate> getCan() {
+	public List<Candidate> getCandidate() {
 		Session session = this.sessionFactory.getCurrentSession();
         List<Candidate>   canList    = session.createQuery("from Candidate").list();
+       
         return canList;
+       
 	}
 
 
 	@Override
-	public int saveCan(Candidate candidate) {
+	public int saveCandidate(Candidate candidate) {
 		Session session = this.sessionFactory.getCurrentSession();
+		if(candidate.getName()!=null&& candidate.getPassword()!=null&&candidate.getUserid()!=null)
+		{
 		session.save(candidate);
+		}
+		else
+		{
+			return 0;
+		}
 		return 1;
 	}
 
 
 	@Override
-	public Candidate getCand(Candidate can, Integer id) {
+	public Candidate getCandidate(Candidate can, Integer id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Candidate canList = (Candidate) session.get(Candidate.class,id);
         return canList;
@@ -52,11 +61,18 @@ public class CanDaoImpl implements CanDAO{
 
 
 	@Override
-	public int saveCcal(Candidatecalls ccal) {
+	public int saveCandidatecalls(Candidatecalls candidatecalls) {
 		Session session = this.sessionFactory.getCurrentSession();
+		if(candidatecalls.getCompanyname()!=null)
+		{
 		Date date = new Date();
-		ccal.setDateofcall(date);
-		session.save(ccal);
+		candidatecalls.setDateofcall(date);
+		session.save(candidatecalls);
+		}
+		else
+		{
+			return 0;
+		}
 		return 1;
 	}
 
@@ -70,6 +86,7 @@ public class CanDaoImpl implements CanDAO{
 	  Session session = this.sessionFactory.getCurrentSession();
 	  Query q = session.createQuery(hql); 
 	  String actualPassword = (((Candidate)(q.uniqueResult())).getPassword()).toString();
+	  
 	  if(actualPassword.equals(password)) 
 		  return 1; 
 	  else 
@@ -93,7 +110,8 @@ public class CanDaoImpl implements CanDAO{
 	public int deleteCandidateById(int id, Candidate can) { 
 	  
 	  
-	  return 1; }
+	  return 1;
+	  }
 
 	//update candidate details
 	@Override
