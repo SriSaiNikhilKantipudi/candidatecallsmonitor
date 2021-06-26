@@ -75,10 +75,18 @@ public class CandidateController {
 	}
 
 	// delete candidate details by id
-	@GetMapping(value = "/deleteCandidateById/{id}/")
-	public ResponseEntity<Integer> deleteCandidate(@PathVariable("id") Integer id, Candidate can,@RequestBody Candidatecalls ccal) {
+	@GetMapping(value = "/deleteCandidateById/{id}")
+	public ResponseEntity<Integer> deleteCandidate(@PathVariable("id") Integer id, Candidate can) {
 		return new ResponseEntity<Integer>(candidateservice.deleteCandidateById(id, can), HttpStatus.OK);
 	}
+	
+	//delete candidate call details by id
+	@GetMapping(value = "/deleteCandidateCallsById/{id}")
+	public ResponseEntity<Integer> deleteCandidate(@PathVariable("id") Integer id, Candidatecalls can) {
+		return new ResponseEntity<Integer>(candidateservice.deleteCandidateCallsById(id, can), HttpStatus.OK);
+	}
+	
+	
 
 	// update candidate details by id
 	@PutMapping(value = "/updateCandidateById/{id}")
