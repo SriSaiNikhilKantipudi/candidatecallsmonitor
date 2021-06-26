@@ -32,6 +32,8 @@ public int updateCandidate(int id,Candidate can);
 
 public int updateCandidateCall(int id, Candidatecalls can);
 
+public int deleteCandidateCallsById(int id, Candidatecalls can);
+
 
 
 

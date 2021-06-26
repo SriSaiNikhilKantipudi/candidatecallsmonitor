@@ -105,13 +105,34 @@ public class CandidateDaoImpl implements CandidateDAO{
 				
         return sao;
 	}
-
+	
+	
+	//Delete Candidate By Id
 	@Override 
 	public int deleteCandidateById(int id, Candidate can) { 
+		List<Candidatecalls> sao = null;
+		Session session = this.sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Candidate v = session.load(Candidate.class, id);
+		sao=v.getCcalls();
+		for(Candidatecalls c : sao) {
+			session.delete(c);
+		}
+		session.delete(v);
+		tx.commit();
 	  
-	  
-	  return 1;
+	  return 1; 
 	  }
+	
+	@Override
+	public int deleteCandidateCallsById(int id, Candidatecalls can) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Transaction tx= session.beginTransaction();
+		Candidatecalls v= session.load(Candidatecalls.class, id);
+		session.delete(v);
+		tx.commit();
+		return 1;
+	}
 
 	//update candidate details
 	@Override
@@ -121,14 +142,10 @@ public class CandidateDaoImpl implements CandidateDAO{
 		if(can.getName()!=null&& can.getPassword()!=null&&can.getUserid()!=null)
 		{
 		Candidate v = (Candidate)session.load(Candidate.class, id);
-		
 		v.setName(can.getName());
-	
 		v.setPassword(can.getPassword());
-		
 		v.setUserid(can.getUserid());
 		session.update(v);
-
 		tx.commit();
 		}
 		else
@@ -136,7 +153,6 @@ public class CandidateDaoImpl implements CandidateDAO{
 			return 0;
 		}
 		return 1;
-		
 	}
 
 	//update candidate calls

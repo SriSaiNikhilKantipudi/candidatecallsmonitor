@@ -27,10 +27,13 @@ public interface CandidateService
 	
 	public int deleteCandidateById(int id, Candidate can);
 	
+	public int deleteCandidateCallsById(int id, Candidatecalls can);
+	
 	public int updateCandidate(int id, Candidate can);
 	
 
 	public int updateCandidateCall(int id, Candidatecalls can);
+	
 
 	
 

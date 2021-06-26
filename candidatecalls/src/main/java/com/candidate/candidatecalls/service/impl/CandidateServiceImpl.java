@@ -74,12 +74,13 @@ public class CandidateServiceImpl implements CandidateService {
 		
 		return dao.updateCandidateCall(id,can);
 	}
+
+	@Override
+	public int deleteCandidateCallsById(int id, Candidatecalls can) {
+		return dao.deleteCandidateCallsById(id, can);
+	}
 	
 
-	/*
-	 * @Override public List<Candidatecalls> getCandidateCalls(List<Candidatecalls>
-	 * can1) { return dao.getCandidateCalls(can1); }
-	 */
 	
 	
 	
