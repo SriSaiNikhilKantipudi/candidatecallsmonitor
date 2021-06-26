@@ -10,16 +10,16 @@ import com.candidate.candidatecalls.model.Candidatecalls;
 
 @Service
 @Repository
-public interface CanDAO {
+public interface CandidateDAO {
 	
 
-public List<Candidate> getCan();
+public List<Candidate> getCandidate();
 
-public int saveCan(Candidate can);
+public int saveCandidate(Candidate can);
 
-public Candidate getCand(Candidate can, Integer id);
+public Candidate getCandidate(Candidate can, Integer id);
 
-public int saveCcal(Candidatecalls ccal);
+public int saveCandidatecalls(Candidatecalls ccal);
 
 public int authenticateUser( String userId, String password);
 
