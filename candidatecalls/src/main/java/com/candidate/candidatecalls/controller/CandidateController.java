@@ -1,6 +1,7 @@
 package com.candidate.candidatecalls.controller;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -129,8 +130,6 @@ public class CandidateController {
 		return candidateservice.updateCandidateCall(id, can);
 	}
 	
->>>>>>> Stashed changes:candidatecalls/src/main/java/com/candidate/candidatecalls/controller/CandidateController.java
-=======
 	// Authentication API
 	@PostMapping(value= "/candidate/auth")
 	public ResponseEntity<Integer> auth(@RequestBody Authentication authentication, Candidate can)
